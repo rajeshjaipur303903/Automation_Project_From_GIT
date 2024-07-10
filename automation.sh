@@ -5,7 +5,7 @@ terraform apply --auto-approve
 JENKINS_IP=$(terraform output -raw jenkins_public_ip)
 
 # Path to the Ansible inventory file
-INVENTORY_FILE="/home/rajesh/gamemano/public/gamemano/hosts"
+INVENTORY_FILE="/home/rajesh/news/gamemano/hosts"
 
 # Update the inventory file
 echo "[jenkins]" > $INVENTORY_FILE

@@ -16,14 +16,21 @@ pipeline {
             poll: True
             }
         }
+        stage('Sonar-integrate') {
+          steps{
+              echo 'Adding Sonar project'
+            }
+        }
         stage('Build Application') {
           steps{
               echo 'Creating an optimized staging build'
+              sh 'docker build -t custom-nginx .'
             }
         }
-        stage('Testing') {
+        stage('Some-Scripts to Test') {
           steps{
               echo 'Creating an optimized staging build'
+              echo 'can run some scripts to test in images'
             }
         }
 
@@ -34,7 +41,6 @@ pipeline {
               sh script:'''
               #!/bin/bash
               echo "${BUILD_NUMBER}"
-              docker build -t custom-nginx .
               docker run -d -p 80:80 --name ${BUILD_NUMBER} custom-nginx
               echo "Web appication has been deployed"
               '''

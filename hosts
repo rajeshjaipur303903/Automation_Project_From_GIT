@@ -1,2 +1,2 @@
 [jenkins]
-3.235.253.147 ansible_ssh_private_key_file=/home/rajesh/Downloads/testing.pem ansible_user=ec2-user
+54.157.152.95 ansible_ssh_private_key_file=/home/rajesh/Downloads/testing.pem ansible_user=ec2-user
