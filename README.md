@@ -59,6 +59,8 @@ chmod +x automation.sh
     or
 bash automation.sh
 ```
+Make sure in script your inventory and key path should be correct
+
 All things deploy and update inventery file. It will excute infra and ansible also.
 ```
 
