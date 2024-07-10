@@ -78,3 +78,8 @@ And In github repository create webhook also.
 7. We have setup all things
 ```
 When code changes pipeline automatically trigger
+
+8. When deployed done hit IP in browser
+```
+<jenkinsIp>
+```
