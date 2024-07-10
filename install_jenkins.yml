@@ -1,0 +1,60 @@
+- name: Install Jenkins and Docker
+  hosts: all
+  become: yes
+  remote_user: ec2-user
+
+  tasks:
+    - name: Update dnf repo
+      command: sudo dnf update -y
+
+    - name: Install pip
+      dnf:
+        name: python3-pip
+        state: latest
+
+    - name: Install Ansible
+      pip:
+        name: ansible
+
+    - name: Install Java 17
+      dnf:
+        name: java-17-amazon-corretto.x86_64
+        state: latest
+
+    - name: Install Jenkins repo
+      get_url:
+        url: https://pkg.jenkins.io/redhat/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+
+    - name: Import Jenkins key
+      rpm_key:
+        key: https://pkg.jenkins.io/redhat/jenkins.io.key
+        state: present
+
+    - name: Install Jenkins
+      dnf:
+        name: jenkins
+        state: present
+
+    - name: Start Jenkins service
+      service:
+        name: jenkins
+        state: started
+        enabled: true
+
+    - name: Install Docker
+      dnf:
+        name: docker
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Add ec2-user to the docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
